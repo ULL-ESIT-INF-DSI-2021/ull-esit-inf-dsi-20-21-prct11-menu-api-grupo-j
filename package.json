@@ -1,0 +1,43 @@
+{
+    "name": "DSI-Typescript-Node-API",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/server.js",
+    "directories": {
+        "doc": "docs",
+        "test": "tests"
+    },
+    "scripts": {
+        "start": "node ./build/server.js",
+        "test": "mocha",
+        "doc": "typedoc;",
+        "build": "tsc-watch",
+        "dev": "nodemon ./dist/server.js",
+        "heroku-postbuild": "tsc"
+    },
+    "engines": {
+        "node": "16.x"
+    },
+    "keywords": [],
+    "author": "Adrián González",
+    "license": "ISC",
+    "dependencies": {
+        "compression": "^1.7.4",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "helmet": "^4.6.0",
+        "mongoose": "^5.12.9",
+        "morgan": "^1.10.0"
+    },
+    "devDependencies": {
+        "@types/compression": "^1.7.0",
+        "@types/cors": "^2.8.10",
+        "@types/express": "^4.17.11",
+        "@types/mongoose": "^5.10.5",
+        "@types/morgan": "^1.9.2",
+        "@types/node": "^15.3.0",
+        "nodemon": "^2.0.7",
+        "tsc-watch": "^4.2.9",
+        "typescript": "^4.2.4"
+    }
+}
