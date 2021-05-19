@@ -1,4 +1,5 @@
 import {Request, Response, Router} from 'express'
+import ingredientRoutes from './ingredients.routes'
 
 class ApiRoutes {
     router: Router;
@@ -11,6 +12,7 @@ class ApiRoutes {
         this.router.get('/', (req, res) => {
             res.send("To use the API, you must go to: /ingredients /courses or /menus");
         })
+        this.router.use(ingredientRoutes);
     }
 }
 
