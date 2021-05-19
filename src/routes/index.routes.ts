@@ -1,5 +1,5 @@
 import {Request, Response, Router} from 'express'
-import ingredientRoutes from './ingredients.routes'
+import ingredientRoutes from './Ingredients.routes'
 
 class ApiRoutes {
     router: Router;
