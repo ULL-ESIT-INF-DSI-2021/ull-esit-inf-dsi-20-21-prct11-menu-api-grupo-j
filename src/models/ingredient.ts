@@ -35,3 +35,5 @@ const IngredientSchema = new mongoose.Schema({
   }
 });
 
+const Ingredient = mongoose.model<IngredientInterface>("Ingredient", IngredientSchema);
+export default Ingredient;
