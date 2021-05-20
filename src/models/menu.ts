@@ -32,3 +32,16 @@ MenuSchema.virtual("menuComposition", function (this: MenuInterface) {
   return { carbohydrates: cb, proteins: pt, lipids: lp };
 });
 
+MenuSchema.virtual("ingredientTypes", function (this: MenuInterface) {
+  let result: ingredientType[] = [];
+  this.courses.forEach(course => {
+    course.ingredients.forEach(ing => {
+      let group: ingredientType = ing.ingredient.ingredientGroup;
+      if (!result.includes(group)) result.push(group);
+
+    });
+  })
+  return result;
+});
+
+
