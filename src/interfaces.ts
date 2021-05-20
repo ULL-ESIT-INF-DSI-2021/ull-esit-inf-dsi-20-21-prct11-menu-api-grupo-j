@@ -7,3 +7,14 @@ export interface IngredientInterface {
   nutrients: { carbohydrates: number, proteins: number, lipids: number };
   pricePerKg: number;
 }
+
+export type CourseType = "STARTER" | "FIRSTCOURSE" | "SECONDCOURSE" | "DESSERT";
+
+export interface CourseInterface {
+  name: string;
+  courseType: CourseType;
+  ingredients: { ingredient: IngredientInterface, amountInGrams: number }[];
+  coursePrice: number;
+  courseComposition: { carbohydrates: number, proteins: number, lipids: number };
+  mainNutrient: string;
+}
