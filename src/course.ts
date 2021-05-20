@@ -25,3 +25,11 @@ const CourseSchema = new mongoose.Schema({
     }]   
   }
 });
+
+CourseSchema.virtual("coursePrice", function(this: CourseInterface) {
+    let coursePrice = 0;
+    for(const ingredient of this.ingredients) {
+      coursePrice += ingredient["ingredient"].pricePerKg / 100 * ingredient["amountInGrams"];
+    }
+    return coursePrice;
+  });
