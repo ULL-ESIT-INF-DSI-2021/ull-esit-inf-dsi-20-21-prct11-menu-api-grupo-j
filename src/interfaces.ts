@@ -18,3 +18,11 @@ export interface CourseInterface {
   courseComposition: { carbohydrates: number, proteins: number, lipids: number };
   mainNutrient: string;
 }
+
+export interface MenuInterface {
+    name: string;
+    menuPrice: number;
+    courses: CourseInterface[];
+    menuComposition: { carbohydrates: number, proteins: number, lipids: number };
+    ingredientTypes: ingredientType[];
+  }
