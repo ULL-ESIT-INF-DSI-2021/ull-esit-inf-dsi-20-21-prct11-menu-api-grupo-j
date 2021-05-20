@@ -43,3 +43,6 @@ CourseSchema.virtual("courseComposition", function(this: CourseInterface) {
     });
     return { carbohydrates: cb, proteins: pt, lipids: lp };
 });
+
+const Course = mongoose.model<CourseInterface>("Course", CourseSchema);
+export default Course;
