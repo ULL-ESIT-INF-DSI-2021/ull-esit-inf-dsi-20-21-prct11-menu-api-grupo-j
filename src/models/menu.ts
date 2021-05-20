@@ -44,4 +44,5 @@ MenuSchema.virtual("ingredientTypes", function (this: MenuInterface) {
   return result;
 });
 
-
+const Menu = mongoose.model<MenuInterface>("Menu", MenuSchema);
+export default Menu;
