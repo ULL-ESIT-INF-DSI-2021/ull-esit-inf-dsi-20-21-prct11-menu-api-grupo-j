@@ -21,4 +21,14 @@ MenuSchema.virtual("menuPrice", function (this: MenuInterface) {
   return menuPrice;
 });
 
+MenuSchema.virtual("menuComposition", function (this: MenuInterface) {
+  let cb: number = 0, pt = 0, lp = 0;
+  this.courses.forEach(course => {
+    const composition = course.courseComposition;
+    cb += composition.carbohydrates;
+    pt += composition.proteins;
+    lp += composition.lipids;
+  });
+  return { carbohydrates: cb, proteins: pt, lipids: lp };
+});
 
