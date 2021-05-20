@@ -1,5 +1,5 @@
-import {Request, Response, Router} from 'express'
-import Course from './models/Course'
+import {Request, Response, Router} from 'express';
+import Course from '../models/course';
 
 class IngredientRoutes {
     router: Router;
@@ -37,8 +37,8 @@ class IngredientRoutes {
     postCourse(req: Request, res: Response) {
         const course = new Course();
         //then 201 catch 400
-        course.save().then((ingredient: Course) => {
-            res.status(201).send(ingredient);
+        course.save().then((course) => {
+            res.status(201).send(course);
         }).catch((error: Error) => {
             res.status(400).send(error);
         });

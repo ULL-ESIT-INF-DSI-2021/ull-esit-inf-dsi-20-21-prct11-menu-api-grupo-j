@@ -1,5 +1,5 @@
-import {Request, Response, Router} from 'express'
-import Ingredient from './models/Ingredient'
+import {Request, Response, Router} from 'express';
+import Ingredient from '../models/ingredient';
 
 class IngredientRoutes {
     router: Router;
@@ -35,9 +35,11 @@ class IngredientRoutes {
     }
 
     postIngredient(req: Request, res: Response) {
-        const ingredient = new Ingredient();
+        const ingredient = new Ingredient({
+            //...
+        });
         //then 201 catch 400
-        ingredient.save().then((ingredient: Ingredient) => {
+        ingredient.save().then((ingredient) => {
             res.status(201).send(ingredient);
         }).catch((error: Error) => {
             res.status(400).send(error);
