@@ -12,3 +12,13 @@ const MenuSchema = new mongoose.Schema({
     required: true,
   },
 });
+
+MenuSchema.virtual("menuPrice", function (this: MenuInterface) {
+  let menuPrice = 0;
+  this.courses.forEach(course => {
+    menuPrice += course.coursePrice;
+  });
+  return menuPrice;
+});
+
+
