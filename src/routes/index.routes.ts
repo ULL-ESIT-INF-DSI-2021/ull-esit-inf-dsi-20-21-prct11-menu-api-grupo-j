@@ -3,6 +3,9 @@ import ingredientRoutes from './ingredients.routes'
 import courseRoutes from './courses.routes'
 import menuRoutes from './menus.routes'
 
+/**
+ * Enrutador principal
+ */
 class ApiRoutes {
     router: Router;
     constructor() {
