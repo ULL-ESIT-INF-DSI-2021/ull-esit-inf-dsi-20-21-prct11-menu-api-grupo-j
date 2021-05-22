@@ -13,6 +13,7 @@ export interface IngredientInterface {
 const IngredientSchema = new mongoose.Schema({
     name: {
       type: String,
+      unique: true,
       required: true,
     },
     location: {

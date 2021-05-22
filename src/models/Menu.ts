@@ -14,6 +14,7 @@ export interface MenuInterface {
 const MenuSchema = new mongoose.Schema({
   name: {
     type: String,
+    unique: true,
     required: true,
   },
   menuPrice: {

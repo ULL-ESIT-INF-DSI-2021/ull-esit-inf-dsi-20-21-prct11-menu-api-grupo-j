@@ -16,6 +16,7 @@ export interface CourseInterface {
 const CourseSchema = new mongoose.Schema({
   name: {
     type: String,
+    unique: true,
     required: true,
   },
   courseType: {

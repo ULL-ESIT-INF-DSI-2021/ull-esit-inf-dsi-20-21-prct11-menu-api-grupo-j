@@ -9,7 +9,7 @@ class IngredientRoutes {
     }
 
     getIngredients(req: Request, res: Response) {
-        const filter = req.query.title?{title: req.query.title.toString()}:{};
+        const filter = req.query.name?{name: req.query.name.toString()}:{};
 
         Ingredient.find(filter).then((ingredients) => {
             if (ingredients.length !== 0) {
