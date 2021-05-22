@@ -95,6 +95,7 @@ class IngredientRoutes {
 
     routes() {
         this.router.get('/ingredients', this.getIngredients);
+        this.router.get('/ingredients/:id', this.getIngredientById);
         this.router.post('/ingredients', this.postIngredient);
         this.router.patch('/ingredients', this.patchIngredient);
         this.router.delete('/ingredients', this.deleteIngredient);

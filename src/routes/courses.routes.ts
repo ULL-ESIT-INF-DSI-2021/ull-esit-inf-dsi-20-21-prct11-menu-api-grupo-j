@@ -95,6 +95,7 @@ class CourseRoutes {
 
     routes() {
         this.router.get('/courses', this.getCourses);
+        this.router.get('/courses/:id', this.getCourseById);
         this.router.post('/courses', this.postCourse);
         this.router.patch('/courses', this.patchCourse);
         this.router.delete('/courses', this.deleteCourse);

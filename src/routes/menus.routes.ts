@@ -95,6 +95,7 @@ class MenuRoutes {
 
     routes() {
         this.router.get('/menus', this.getMenus);
+        this.router.get('/menus/:id', this.getMenuById);
         this.router.post('/menus', this.postMenu);
         this.router.patch('/menus', this.patchMenu);
         this.router.delete('/menus', this.deleteMenu);
