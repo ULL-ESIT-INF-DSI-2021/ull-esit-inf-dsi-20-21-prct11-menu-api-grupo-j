@@ -19,7 +19,7 @@
         "node": "16.x"
     },
     "keywords": [],
-    "author": "Adrián González",
+    "author": "Grupo-J-Andrea-Adrian-Saul",
     "license": "ISC",
     "dependencies": {
         "compression": "^1.7.4",
