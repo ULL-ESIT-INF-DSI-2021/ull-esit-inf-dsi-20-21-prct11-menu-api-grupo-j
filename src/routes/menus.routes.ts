@@ -1,19 +1,19 @@
 import { Request, Response, Router } from 'express'
-import Course from '../models/Course'
+import Menu from '../models/Menu'
 
-class CourseRoutes {
+class MenuRoutes {
     router: Router;
     constructor() {
         this.router = Router();
         this.routes();
     }
 
-    getCourses(req: Request, res: Response) {
-        const filter = req.query.name ? { name: req.query.name.toString() } : {};
+    getMenus(req: Request, res: Response) {
+        const filter = req.query.title ? { title: req.query.title.toString() } : {};
 
-        Course.find(filter).then((courses) => {
-            if (courses.length !== 0) {
-                res.send(courses);
+        Menu.find(filter).then((menus) => {
+            if (menus.length !== 0) {
+                res.send(menus);
             } else {
                 res.status(404).send();
             }
@@ -22,34 +22,34 @@ class CourseRoutes {
         })
     }
 
-    getCourseById(req: Request, res: Response) {
-        Course.findById(req.params.id).then((courses) => {
-            if (!courses) {
+    getMenuById(req: Request, res: Response) {
+        Menu.findById(req.params.id).then((menus) => {
+            if (!menus) {
                 res.status(404).send();
             } else {
-                res.send(courses);
+                res.send(menus);
             }
         }).catch(() => {
             res.status(500).send();
         });
     }
 
-    postCourse(req: Request, res: Response) {
-        const course = new Course(req.body);
-        course.save().then((courses) => {
-            res.status(201).send(courses);
+    postMenu(req: Request, res: Response) {
+        const menu = new Menu(req.body);
+        menu.save().then((menus) => {
+            res.status(201).send(menus);
         }).catch((error: Error) => {
             res.status(400).send(error);
         });
     }
 
-    patchCourse(req: Request, res: Response) {
+    patchMenu(req: Request, res: Response) {
         if (!req.query.name) {
             res.status(400).send({
                 error: 'A name must be provided',
             });
         } else {
-            const allowedUpdates = ['name', 'courseType', 'ingredients', 'coursePrice', 'courseComposition'];
+            const allowedUpdates = ['name', 'ingredientTypes', 'courses', 'menuPrice', 'menuComposition'];
             const actualUpdates = Object.keys(req.body);
             const isValidUpdate =
                 actualUpdates.every((update) => allowedUpdates.includes(update));
@@ -59,14 +59,14 @@ class CourseRoutes {
                     error: 'Update is not permitted',
                 });
             } else {
-                Course.findOneAndUpdate({ name: req.query.name.toString() }, req.body, {
+                Menu.findOneAndUpdate({ name: req.query.name.toString() }, req.body, {
                     new: true,
                     runValidators: true,
-                }).then((course) => {
-                    if (!course) {
+                }).then((menu) => {
+                    if (!menu) {
                         res.status(404).send();
                     } else {
-                        res.send(course);
+                        res.send(menu);
                     }
                 }).catch((error) => {
                     res.status(400).send(error);
@@ -75,17 +75,17 @@ class CourseRoutes {
         }
     }
 
-    deleteCourse(req: Request, res: Response) {
+    deleteMenu(req: Request, res: Response) {
         if (!req.query.name) {
             res.status(400).send({
-                error: 'A name must be procided',
+                error: 'A name must be provided',
             });
         } else {
-            Course.findOneAndDelete({ name: req.query.name.toString() }).then((course) => {
-                if (!course) {
+            Menu.findOneAndDelete({ name: req.query.name.toString() }).then((menu) => {
+                if (!menu) {
                     res.status(404).send();
                 } else {
-                    res.send(course);
+                    res.send(menu);
                 }
             }).catch(() => {
                 res.status(400).send();
@@ -94,13 +94,13 @@ class CourseRoutes {
     }
 
     routes() {
-        this.router.get('/courses', this.getCourses);
-        this.router.post('/courses', this.postCourse);
-        this.router.patch('/courses', this.patchCourse);
-        this.router.delete('/courses', this.deleteCourse);
+        this.router.get('/menus', this.getMenus);
+        this.router.post('/menus', this.postMenu);
+        this.router.patch('/menus', this.patchMenu);
+        this.router.delete('/menus', this.deleteMenu);
     }
 }
 
-const courseRoutes = new CourseRoutes();
-courseRoutes.routes();
-export default courseRoutes.router;
+const menuRoutes = new MenuRoutes();
+menuRoutes.routes();
+export default menuRoutes.router;
