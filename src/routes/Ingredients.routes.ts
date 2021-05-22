@@ -1,5 +1,5 @@
 import {Request, Response, Router} from 'express'
-import Ingredient from './models/Ingredient'
+import Ingredient from '../models/Ingredient'
 
 class IngredientRoutes {
     router: Router;
@@ -35,26 +35,53 @@ class IngredientRoutes {
     }
 
     postIngredient(req: Request, res: Response) {
-        const ingredient = new Ingredient();
-        //then 201 catch 400
-        ingredient.save().then((ingredient: Ingredient) => {
+        const ingredient = new Ingredient(req.body);
+        ingredient.save().then((ingredient) => {
             res.status(201).send(ingredient);
         }).catch((error: Error) => {
             res.status(400).send(error);
         });
     }
 
-    putIngredient(req: Request, res: Response) {
-        res.send("put");
+    patchIngredient(req: Request, res: Response) {
+        if (!req.query.name) {
+            res.status(400).send({
+                error: 'A name must be provided',
+            });
+        } else {
+            const allowedUpdates = ['name', 'ingredientGroup', 'location', 'nutrients', 'pricePerKg'];
+            const actualUpdates = Object.keys(req.body);
+            const isValidUpdate =
+                actualUpdates.every((update) => allowedUpdates.includes(update));
+
+            if (!isValidUpdate) {
+                res.status(400).send({
+                    error: 'Update is not permitted',
+                });
+            } else {
+                Ingredient.findOneAndUpdate({ name: req.query.name.toString() }, req.body, {
+                    new: true,
+                    runValidators: true,
+                }).then((ingredient) => {
+                    if (!ingredient) {
+                        res.status(404).send();
+                    } else {
+                        res.send(ingredient);
+                    }
+                }).catch((error) => {
+                    res.status(400).send(error);
+                });
+            }
+        }
     }
 
     deleteIngredient(req: Request, res: Response) {
-        if(!req.query.title) {
+        if(!req.query.name) {
             res.status(400).send({
-                error: 'A title must be procided',
+                error: 'A name must be provided',
             });
         } else {
-            Ingredient.findOneAndDelete({title: req.query.title.toString()}).then((ingredient) => {
+            Ingredient.findOneAndDelete({name: req.query.name.toString()}).then((ingredient) => {
                 if(!ingredient) {
                     res.status(404).send();
                 } else {
@@ -69,7 +96,7 @@ class IngredientRoutes {
     routes() {
         this.router.get('/ingredients', this.getIngredients);
         this.router.post('/ingredients', this.postIngredient);
-        this.router.put('/ingredients', this.putIngredient);
+        this.router.patch('/ingredients', this.patchIngredient);
         this.router.delete('/ingredients', this.deleteIngredient);
     }
 }

@@ -1,5 +1,7 @@
 import {Request, Response, Router} from 'express'
-import ingredientRoutes from './Ingredients.routes'
+import ingredientRoutes from './ingredients.routes'
+import courseRoutes from './courses.routes'
+import menuRoutes from './menus.routes'
 
 class ApiRoutes {
     router: Router;
@@ -13,6 +15,8 @@ class ApiRoutes {
             res.send("To use the API, you must go to: /ingredients /courses or /menus");
         })
         this.router.use(ingredientRoutes);
+        this.router.use(courseRoutes);
+        this.router.use(menuRoutes);
     }
 }
 
