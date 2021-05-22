@@ -1,7 +1,6 @@
 import express from 'express'
 import morgan from 'morgan'
 import mongoose from 'mongoose'
-import cors from 'cors'
 import compression from 'compression'
 
 import apiRoutes from './routes/index.routes'
@@ -31,7 +30,6 @@ class Server {
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended: false}));
         this.app.use(compression());
-        this.app.use(cors());
     }
 
     routes() {
