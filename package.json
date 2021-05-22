@@ -8,7 +8,7 @@
         "test": "tests"
     },
     "scripts": {
-        "start": "node ./build/server.js",
+        "start": "node ./dist/server.js",
         "test": "mocha",
         "doc": "typedoc;",
         "build": "tsc-watch",
