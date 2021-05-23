@@ -64,7 +64,7 @@ Todo el código desarrollado se alojará en el repositorio generado tras la acep
 El proyecto se encuentra principalmente distribuido en 3 directorios.
 La carpeta raíz del proyecto incluye todos los archivos de configuración, así como los archivos de github y sus acciones. Aquí también está las carpetas doc y src.
 
-Dentro de la carpeta sec se encuentra todo el código fuente del proyecto. Allí está el archivo principal del servidor, así como los directorios models (con todos los modelos de datos) y routes (donde se almacenan las rutas y peticiones a la API).
+Dentro de la carpeta src se encuentra todo el código fuente del proyecto. Allí está el archivo principal del servidor, así como los directorios models (con todos los modelos de datos) y routes (donde se almacenan las rutas y peticiones a la API).
 
 Por último, en doc se encuentra toda la documentación derivada de este proyecto.
 
